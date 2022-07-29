@@ -1,6 +1,7 @@
 # Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
+from bs4 import SoupStrainer
 import pandas as pd
 import datetime as dt
 from webdriver_manager.chrome import ChromeDriverManager
@@ -12,6 +13,8 @@ def scrape_all():
     browser = Browser('chrome', **executable_path, headless=True)
 
     news_title, news_paragraph = mars_news(browser)
+    
+
 
     # Run all scraping functions and store results in a dictionary
     data = {
@@ -19,7 +22,9 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "last_modified": dt.datetime.now()
+        "last_modified": dt.datetime.now(), 
+        "hemispheres": hemispheres(browser)
+        
     }
 
     # Stop webdriver and return data
@@ -100,8 +105,45 @@ def mars_facts():
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
 
+    
+def hemispheres(browser):
+    # Get hemisphere images and titles
+    hemisphere_image_urls = []
+    url = 'https://marshemispheres.com/'
+
+
+    browser.visit(url)
+
+    for i in range(0, 4):
+        # Open link to next page for each hemisphere
+        browser.links.find_by_partial_text('Hemisphere Enhanced')[i].click()
+        html = browser.html
+
+        # Locate the title text
+        hemi_soup = soup(html, 'html.parser')
+        img_title = hemi_soup.find('h2', class_='title').text
+
+        # Get the relative path
+        rel_path = []
+        for link in hemi_soup.find_all('a'):
+            rel_path.append(link.get('href'))
+
+        # Create the full link path
+        img_link = url + rel_path[3]
+
+        # Append the dictionary of link and title the list
+        hemisphere_image_urls.append({'img_url': img_link, 'title': img_title})
+
+        # Return to the index page before cycling to the next image
+        browser.links.find_by_partial_text('Back').click()
+
+    return hemisphere_image_urls
+
+
+
 
 if __name__ == "__main__":
 
     # If running as script, print scraped data
     print(scrape_all())
+
