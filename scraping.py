@@ -90,10 +90,10 @@ def featured_image(browser):
 
 def mars_facts():
     # Add try/except for error handling
+   
     try:
         # Use 'read_html' to scrape the facts table into a dataframe
-        df = pd.read_html(
-            'https://data-class-mars-facts.s3.amazonaws.com/Mars_Facts/index.html')[0]
+        df = pd.read_html('https://data-class-mars-facts.s3.amazonaws.com/Mars_Facts/index.html')[0]
 
     except BaseException:
         return None
@@ -103,9 +103,11 @@ def mars_facts():
     df.set_index('Description', inplace=True)
 
     # Convert dataframe into HTML format, add bootstrap
-    return df.to_html(classes="table table-hover")
+    return df.to_html(classes="table table-hover") 
 
-    
+
+
+
 def hemispheres(browser):
     # Get hemisphere images and titles
     hemisphere_image_urls = []

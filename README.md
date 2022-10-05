@@ -11,6 +11,14 @@ This project scraped data and images from NASA websites and images from other so
 BeautifulSoup, Splinter, ChromeDriveManager, Selenium, Pandas, MongoDB, PyMongo, Flask, Bootstrap
 
 ---
+## Running the Application
+
+To run the Mission-to-Mars application, run the command prompt from the directory the files are saved to and enter 'python app.py'. The webpage will open locally at http://127.0.0.1:5000. It should appear as below: 
+
+
+
+
+---
 ## Web Scraping
 The functions coded were used to open the browser to the NASA Mars News Site and scrape the data using BeautifulSoup. Additionally the image of the day was retieved from spaceimages-mars.com. Mars facts were retrieved from a different facet of the Mars news site, and finally the hemisphere images were acquired from the marshemispheres website. Each of these scrapes haad a function defined to retreive the data: 
 
