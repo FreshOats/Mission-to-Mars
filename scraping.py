@@ -1,7 +1,6 @@
 # Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
-from bs4 import SoupStrainer
 import pandas as pd
 import datetime as dt
 from webdriver_manager.chrome import ChromeDriverManager
@@ -95,7 +94,7 @@ def mars_facts():
         # Use 'read_html' to scrape the facts table into a dataframe
         # df = pd.read_html('https://data-class-mars-facts.s3.amazonaws.com/Mars_Facts/index.html')[0]
         df = pd.read_html('https://galaxyfacts-mars.com')[0]
-        
+
     except BaseException:
         return None
 
