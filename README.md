@@ -15,8 +15,7 @@ BeautifulSoup, Splinter, ChromeDriveManager, Selenium, Pandas, MongoDB, PyMongo,
 
 To run the Mission-to-Mars application, run the command prompt from the directory the files are saved to and enter 'python app.py'. The webpage will open locally at http://127.0.0.1:5000. It should appear as below: 
 
-
-
+![Mission-to-Mars](https://user-images.githubusercontent.com/33167541/194158143-fd80eb2b-7b2d-4db2-aa9a-10152e44b477.png)
 
 ---
 ## Web Scraping
