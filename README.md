@@ -1,4 +1,4 @@
-# Mission-to-Mars
+# Scraping the Surface of Mars
 ### Web scraping using a NoSQL database
 #### by Justin R. Papreck
 ---
